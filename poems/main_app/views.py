@@ -64,7 +64,10 @@ def add_comment(request, poem_id):
     new_comment.poem_id = poem_id
     new_comment.save()
   return redirect('detail', poem_id=poem_id)
-
+  
+def comment_update(request):
+  model = Poem
+  fields = ['text']
 
 class PoeCreate(LoginRequiredMixin, CreateView):
   model = Poem
@@ -82,6 +85,8 @@ class PoeUpdate(LoginRequiredMixin, UpdateView):
 class PoeDelete(LoginRequiredMixin, DeleteView):
   model = Poem
   success_url = '/poems/'  
+
+
 
 def genres(request):
   return render(request, 'genres.html')  

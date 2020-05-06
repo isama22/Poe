@@ -13,16 +13,16 @@
 <!-- if a photo exists, show it with a for loop and disable form, if it doesnt exist show form  -->
 
 {% for photo in poem.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{photo.url}}">
+<img class="responsive-img card-panel" src="{{photo.url}}">
 {% empty %}
-    <p>No Photos Uploaded</p>
+<p>No Photos Uploaded</p>
 {% endfor %}
 
 <form action="{% url 'add_photo' poem.id %}" enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" value="Upload Photo">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" value="Upload Photo">
 </form>
 <br><br>
 <div>
@@ -34,7 +34,8 @@
     <tbody>
       {% for comment in poem.comment_set.all %}
       <tr>
-        <td><em>{{request.user.username}}:</em> {{comment.text}}</td>
+        <td><em>{{request.user.username}}:</em> {{comment.text}}
+          <a href="{% url 'poes_update' poem.comment.id %}">Edit</a></td>
       </tr>
       {% empty %}
       <p>No comments yet!</p>
